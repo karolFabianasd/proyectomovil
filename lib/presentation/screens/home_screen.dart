@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           itemDashboard(context, "Lavado", Icons.local_car_wash, '/lavado'),
-          itemDashboard(context, "Aceites", Icons.build, '/lavado'),
+          itemDashboard(context, "Aceites", Icons.build, '/aceite'),
           itemDashboard(context, "Mantenimiento", Icons.place, '/lavado'),
           itemDashboard(
               context, "Tapiceria", Icons.miscellaneous_services, '/lavado'),
