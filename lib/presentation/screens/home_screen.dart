@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           itemDashboard(context, "Mantenimiento", Icons.place, '/lavado'),
           itemDashboard(
               context, "Tapiceria", Icons.miscellaneous_services, '/lavado'),
-          itemDashboard(context, "Accesorios", Icons.home, '/lavado'),
+          itemDashboard(context, "Lavado", Icons.local_car_wash, '/lavado'),
         ],
       ),
     );
