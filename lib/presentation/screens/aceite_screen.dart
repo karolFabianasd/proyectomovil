@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AceiteScreen extends StatelessWidget {
-  const AceiteScreen({Key? key}) : super(key: key);
+  const AceiteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

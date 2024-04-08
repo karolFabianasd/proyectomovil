@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/aceite_screen.dart';
 import 'package:flutter_application_1/presentation/screens/home_screen.dart';
-import 'package:flutter_application_1/presentation/screens/lavado_screen.dart';
+import 'package:flutter_application_1/presentation/screens/qr_screen.dart';
 
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+  const DashboardScreen({super.key});
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
@@ -17,7 +17,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(), // HomeScreen incluye tu GridView
-    const LavadoScreen(),
+    const QrScreen(),
     const AceiteScreen(),
   ];
 

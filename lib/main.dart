@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/aceite_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart';
-import 'package:flutter_application_1/presentation/screens/home_screen.dart';
 import 'package:flutter_application_1/presentation/screens/login_screen.dart';
 import 'package:flutter_application_1/presentation/screens/registro_screen.dart';
 
@@ -40,7 +39,7 @@ void main() {
 // );
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(initialRoute: '/', routes: {

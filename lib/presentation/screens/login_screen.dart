@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/presentation/screens/registro_screen.dart';
-import 'package:sqflite/sqflite.dart';
+
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
+        title: const Text('Register'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -44,7 +43,7 @@ class LoginScreen extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisterScreen()));
+                    MaterialPageRoute(builder: (context) => const RegisterScreen()));
               },
               child: Center(
                 child: RichText(
@@ -83,7 +82,7 @@ class LoginScreen extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
           hintText: titleHint,
-          hintStyle: TextStyle(color: Colors.blueGrey),
+          hintStyle: const TextStyle(color: Colors.blueGrey),
         ),
       ),
     );
