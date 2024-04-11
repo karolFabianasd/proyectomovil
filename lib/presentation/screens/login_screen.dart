@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/presentation/screens/admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/presentation/screens/registro_screen.dart';
 
@@ -18,11 +19,17 @@ class LoginScreen extends StatelessWidget {
             _buildTextFormField("Contraseña", Icons.lock),
             GestureDetector(
               onTap: () {
-                if (true) {
+                if (false) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const DashboardScreen()),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const QRViewExample()),
                   );
                 }
               },
