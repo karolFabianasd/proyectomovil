@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(initialRoute: '/', routes: {
       '/': (context) => const LoginScreen(),
-      '/registro': (context) => const RegisterScreen(),
+      '/registro': (context) =>  RegisterScreen(),
       '/dashboard': (context) => const DashboardScreen(),
       '/aceite': (context) => const AceiteScreen(),
     });

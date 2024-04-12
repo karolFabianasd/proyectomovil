@@ -30,19 +30,18 @@ class _HomeScreenState extends State<HomeScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          itemDashboard(context, "Lavado", Icons.local_car_wash, '/lavado'),
-          itemDashboard(context, "Aceites", Icons.build, '/aceite'),
-          itemDashboard(context, "Mantenimiento", Icons.place, '/lavado'),
-          itemDashboard(
-              context, "Tapiceria", Icons.miscellaneous_services, '/lavado'),
-          itemDashboard(context, "Lavado", Icons.local_car_wash, '/lavado'),
+          itemDashboard(context, "Lavado", 'images/aceite.png', '/lavado'),
+          itemDashboard(context, "Aceites", 'images/aceite.png', '/aceite'),
+          itemDashboard(context, "Mantenimiento", 'images/lavado.png', '/lavado'),
+          itemDashboard( context, "Tapiceria", 'images/lavado.png', '/lavado'),
+        
         ],
       ),
     );
   }
 
   Widget itemDashboard(
-      BuildContext context, String title, IconData icon, String path) {
+      BuildContext context, String title, String ruta, String path) {
     return InkWell(
       onTap: () {
         // Navega a la pantalla correspondiente según la ruta proporcionada
@@ -102,15 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 padding: const EdgeInsets.all(15),
-                decoration: const BoxDecoration(
-                  color: Colors.amber,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 30, // Tamaño del ícono
-                ),
+                
+                child: Image.asset(
+              ruta,
+             
+              fit: BoxFit.cover,
+            ),
               ),
             ),
             const SizedBox(height: 10),
