@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/admin_screen.dart';
+import 'package:flutter_application_1/presentation/screens/dashboard_admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/presentation/screens/registro_screen.dart';
 
@@ -29,7 +30,7 @@ class LoginScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const QRViewExample()),
+                        builder: (context) => const DashboardAdminScreen()),
                   );
                 }
               },
