@@ -5,70 +5,94 @@ import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart
 import 'package:flutter_application_1/presentation/screens/registro_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controllerUsername = TextEditingController();
+    TextEditingController controllerPassword = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        backgroundColor: Color.fromARGB(255, 252, 252, 252),
+        title: const Text('Inicio De Sesión'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildTextFormField("Correo", Icons.email),
-            _buildTextFormField("Contraseña", Icons.lock),
-            GestureDetector(
-              onTap: () {
-                if (false) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DashboardScreen()),
-                  );
-                } else {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DashboardAdminScreen()),
-                  );
-                }
-              },
-              child: Container(
+      backgroundColor: Color.fromARGB(255, 252, 252, 252),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.network(
+                'https://drive.google.com/uc?export=view&id=1IJTiWrWq5j7DBJ16OUrSrjaeJ30YfmsV',
+                width: 180,
+                height: 180,
+              ),
+              _buildTextFormField("Usuario", Icons.person, controllerUsername),
+              _buildTextFormField("Contraseña", Icons.lock, controllerPassword),
+              GestureDetector(
+                onTap: () {
+                  final username = controllerUsername.text;
+                  final password = controllerPassword.text;
+
+                  if (username == 'admin' && password == 'admin') {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DashboardAdminScreen(),
+                      ),
+                    );
+                  } else {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DashboardScreen(),
+                      ),
+                    );
+                  }
+                },
+                child: Container(
                   margin:
-                      const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                   height: 50,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.indigo),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.indigo,
+                  ),
                   child: const Center(
-                    child: Text('Login Sebastian',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold)),
-                  )),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>  RegisterScreen()));
-              },
-              child: Center(
-                child: RichText(
-                  text: const TextSpan(
-                      text: 'Registrate ',
-                      style: TextStyle(color: Colors.indigo, fontSize: 16.0)),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            )
-          ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RegisterScreen(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Registrate',
+                  style: TextStyle(color: Colors.indigo, fontSize: 16.0),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildTextFormField(String titleHint, IconData icon) {
+  Widget _buildTextFormField(
+      String titleHint, IconData icon, TextEditingController controller) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
       decoration: BoxDecoration(
@@ -77,7 +101,7 @@ class LoginScreen extends StatelessWidget {
             color: Colors.indigo.withOpacity(0.2),
             spreadRadius: 1,
             blurRadius: 6,
-            offset: const Offset(0, 10), // changes position of shadow
+            offset: const Offset(0, 10),
           ),
         ],
       ),
@@ -93,6 +117,7 @@ class LoginScreen extends StatelessWidget {
           hintText: titleHint,
           hintStyle: const TextStyle(color: Colors.blueGrey),
         ),
+        controller: controller,
       ),
     );
   }

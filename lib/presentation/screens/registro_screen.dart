@@ -16,30 +16,34 @@ class RegisterScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Register'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildTextFormFieldNombre("Nombre", Icons.person),
-            _buildTextFormFieldApellido("Apellido", Icons.person),
-            _buildTextFormFieldTelefono("Telefono", Icons.phone),
-            _buildTextFormFieldCorreo("Correo", Icons.email),
-            _buildTextFormFieldPassword("Contraseña", Icons.lock),
-            GestureDetector(
-              onTap: () {
-                final textValue1 = controlerDetailsNombre.value.text;
-                final textValue2 = controlerDetailsApellido.value.text;
-                final textValue3 = controlerDetailsTelefono.value.text;
-                final textValue4 = controlerDetailsCorreo.value.text;
-                final textValue5 = controlerDetailsPass.value.text;
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildTextFormFieldNombre("Nombre", Icons.person),
+              _buildTextFormFieldApellido("Apellido", Icons.person),
+              _buildTextFormFieldTelefono("Telefono", Icons.phone),
+              _buildTextFormFieldCorreo("Correo", Icons.email),
+              _buildTextFormFieldPassword("Contraseña", Icons.lock),
+              GestureDetector(
+                onTap: () {
+                  final textValue1 = controlerDetailsNombre.value.text;
+                  final textValue2 = controlerDetailsApellido.value.text;
+                  final textValue3 = controlerDetailsTelefono.value.text;
+                  final textValue4 = controlerDetailsCorreo.value.text;
+                  final textValue5 = controlerDetailsPass.value.text;
 
-                print('VALORES CAPTURADOS DEL CONTROLADOR FINAL');
-                print(textValue1);
-                print(textValue2);
-                print(textValue3);
-                print(textValue4);
-                print(textValue5);
-              },
-              child: Container(
+                  print('VALORES CAPTURADOS DEL CONTROLADOR FINAL');
+                  print(textValue1);
+                  print(textValue2);
+                  print(textValue3);
+                  print(textValue4);
+                  print(textValue5);
+
+                  Navigator.pop(context);
+                },
+                child: Container(
                   margin:
                       const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
                   height: 50,
@@ -50,9 +54,11 @@ class RegisterScreen extends StatelessWidget {
                     child: Text('Registrarse',
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
-                  )),
-            )
-          ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
