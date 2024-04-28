@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../auth/firebase_auth.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
@@ -9,6 +12,7 @@ class RegisterScreen extends StatelessWidget {
   final controlerDetailsTelefono = TextEditingController();
   final controlerDetailsCorreo = TextEditingController();
   final controlerDetailsPass = TextEditingController();
+   FirebaseAuthService _auth = FirebaseAuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +32,14 @@ class RegisterScreen extends StatelessWidget {
               _buildTextFormFieldPassword("Contraseña", Icons.lock),
               GestureDetector(
                 onTap: () {
-                  final textValue1 = controlerDetailsNombre.value.text;
-                  final textValue2 = controlerDetailsApellido.value.text;
-                  final textValue3 = controlerDetailsTelefono.value.text;
-                  final textValue4 = controlerDetailsCorreo.value.text;
-                  final textValue5 = controlerDetailsPass.value.text;
+                  final nombre = controlerDetailsNombre.value.text;
+                  final apellido = controlerDetailsApellido.value.text;
+                  final tel = controlerDetailsTelefono.value.text;
+                  final correo = controlerDetailsCorreo.value.text;
+                  final pass = controlerDetailsPass.value.text;
 
-                  print('VALORES CAPTURADOS DEL CONTROLADOR FINAL');
-                  print(textValue1);
-                  print(textValue2);
-                  print(textValue3);
-                  print(textValue4);
-                  print(textValue5);
-
-                  Navigator.pop(context);
+               
+                    _signUp(nombre, correo,pass,context);
                 },
                 child: Container(
                   margin:
@@ -227,5 +225,15 @@ class RegisterScreen extends StatelessWidget {
         controller: controlerDetailsPass,
       ),
     );
+  }
+
+   void _signUp(String user,String correo, String pass,  context) async {
+    User? user = await _auth.signUpWithEmail(correo, pass);
+    
+    if (user!=null){
+ Navigator.pushNamed(context, '/');
+    }else{
+      print('algo salio mal');
+    }
   }
 }

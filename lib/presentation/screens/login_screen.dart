@@ -1,23 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/presentation/screens/admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/presentation/screens/registro_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../auth/firebase_auth.dart';
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController controllerUsername = TextEditingController();
-    TextEditingController controllerPassword = TextEditingController();
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+TextEditingController controllerUsername = TextEditingController();
+    TextEditingController controllerPassword = TextEditingController();
+   FirebaseAuthService _auth = FirebaseAuthService();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 252, 252, 252),
+        backgroundColor: const Color.fromARGB(255, 252, 252, 252),
         title: const Text('Inicio De Sesión'),
       ),
-      backgroundColor: Color.fromARGB(255, 252, 252, 252),
+      backgroundColor: const Color.fromARGB(255, 252, 252, 252),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -34,22 +44,8 @@ class LoginScreen extends StatelessWidget {
                 onTap: () {
                   final username = controllerUsername.text;
                   final password = controllerPassword.text;
-
-                  if (username == 'admin' && password == 'admin') {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DashboardAdminScreen(),
-                      ),
-                    );
-                  } else {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DashboardScreen(),
-                      ),
-                    );
-                  }
+                  _signIn(username,password,context);
+               
                 },
                 child: Container(
                   margin:
@@ -120,5 +116,18 @@ class LoginScreen extends StatelessWidget {
         controller: controller,
       ),
     );
+  }
+
+   void _signIn(correo, pass , context) async {
+   
+ 
+
+    User? user = await _auth.signInWithEmail(correo, pass);
+    
+    if (user!=null){
+ Navigator.pushNamed(context, '/home');
+    }else{
+      print('algo salio mal');
+    }
   }
 }

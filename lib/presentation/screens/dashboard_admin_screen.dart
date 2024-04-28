@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/presentation/screens/aceite_screen.dart';
 import 'package:flutter_application_1/presentation/screens/admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/home_screen.dart';
 import 'package:flutter_application_1/presentation/screens/qr_screen.dart';

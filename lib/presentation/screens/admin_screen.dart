@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -48,7 +46,7 @@ class _QRViewExampleState extends State<QRViewExample> {
          const Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding:  EdgeInsets.all(20),
               child: Text(
                 'Apunta la cámara hacia el código QR',
                 style: TextStyle(color: Colors.white),
