@@ -1,11 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/aceite_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart';
+import 'package:flutter_application_1/presentation/screens/home_screen.dart';
 import 'package:flutter_application_1/presentation/screens/login_screen.dart';
 import 'package:flutter_application_1/presentation/screens/registro_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+
+WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyAn6GUIMiBd4t_OYks5Dw1vP4uuGY5ffGU", // paste your api key here
+      appId:  "1:1087925949233:android:264043b70ed9b99923d610", //paste your app id here
+      messagingSenderId: "1087925949233", //paste your messagingSenderId here
+      projectId: "autostock-5f89d", //paste your project id here
+    ),
+  );
+  runApp(MyApp());
 }
 // final GoRouter _router = GoRouter(
 //   routes: <GoRoute>[
@@ -47,6 +59,7 @@ class MyApp extends StatelessWidget {
       '/registro': (context) =>  RegisterScreen(),
       '/dashboard': (context) => const DashboardScreen(),
       '/aceite': (context) => const AceiteScreen(),
+      '/home': (context) => const HomeScreen(),
     });
   }
 }
