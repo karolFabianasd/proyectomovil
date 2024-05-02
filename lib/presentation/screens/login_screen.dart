@@ -126,7 +126,7 @@ TextEditingController controllerUsername = TextEditingController();
     
     if (user!=null){
        print('usuario');
-     Navigator.pushNamed(context, '/home');
+     Navigator.pushNamed(context, '/dashboard');
     
     }else{
         print('admin');
