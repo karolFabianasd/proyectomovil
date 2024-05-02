@@ -63,6 +63,23 @@ class _QRViewExampleState extends State<QRViewExample> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
+          showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Resultado del escaneo'),
+            content: Text(result?.code ?? 'No se encontró ningún código'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/dashboardAdmin');
+                },
+                child: Text('Cerrar'),
+              ),
+            ],
+          );
+        },
+      );
       });
     });
   }

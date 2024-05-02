@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/aceite_screen.dart';
+import 'package:flutter_application_1/presentation/screens/dashboard_admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/presentation/screens/home_screen.dart';
 import 'package:flutter_application_1/presentation/screens/login_screen.dart';
@@ -58,8 +59,11 @@ class MyApp extends StatelessWidget {
       '/': (context) => const LoginScreen(),
       '/registro': (context) =>  RegisterScreen(),
       '/dashboard': (context) => const DashboardScreen(),
+      '/dashboardAdmin': (context) => const DashboardAdminScreen(),
       '/aceite': (context) => const AceiteScreen(),
       '/home': (context) => const HomeScreen(),
-    });
+    },
+    debugShowCheckedModeBanner: false,
+    );
   }
 }

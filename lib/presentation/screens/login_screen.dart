@@ -125,9 +125,12 @@ TextEditingController controllerUsername = TextEditingController();
     User? user = await _auth.signInWithEmail(correo, pass);
     
     if (user!=null){
- Navigator.pushNamed(context, '/home');
+       print('usuario');
+     Navigator.pushNamed(context, '/home');
+    
     }else{
-      print('algo salio mal');
+        print('admin');
+       Navigator.pushNamed(context, '/dashboardAdmin');
     }
   }
 }
