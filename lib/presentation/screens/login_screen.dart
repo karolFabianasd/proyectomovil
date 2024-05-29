@@ -16,9 +16,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-TextEditingController controllerUsername = TextEditingController();
-    TextEditingController controllerPassword = TextEditingController();
-   FirebaseAuthService _auth = FirebaseAuthService();
+  TextEditingController controllerUsername = TextEditingController();
+  TextEditingController controllerPassword = TextEditingController();
+  FirebaseAuthService _auth = FirebaseAuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,8 @@ TextEditingController controllerUsername = TextEditingController();
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(
-                'https://drive.google.com/uc?export=view&id=1IJTiWrWq5j7DBJ16OUrSrjaeJ30YfmsV',
+              Image.asset(
+                'images/icono.png',
                 width: 180,
                 height: 180,
               ),
@@ -44,11 +44,10 @@ TextEditingController controllerUsername = TextEditingController();
                 onTap: () {
                   final username = controllerUsername.text;
                   final password = controllerPassword.text;
-                  if(username=="Admin123"){
-                     Navigator.pushNamed(context, '/dashboardAdmin');
+                  if (username == "Admin123") {
+                    Navigator.pushNamed(context, '/dashboardAdmin');
                   }
-                  _signIn(username,password,context);
-               
+                  _signIn(username, password, context);
                 },
                 child: Container(
                   margin:
@@ -121,19 +120,15 @@ TextEditingController controllerUsername = TextEditingController();
     );
   }
 
-   void _signIn(correo, pass , context) async {
-   
- 
-
+  void _signIn(correo, pass, context) async {
     User? user = await _auth.signInWithEmail(correo, pass);
-    
-    if (user!=null){
-       print('usuario');
-     Navigator.pushNamed(context, '/dashboard');
-    
-    }else{
-        print('admin');
-       Navigator.pushNamed(context, '/dashboardAdmin');
+
+    if (user != null) {
+      print('usuario');
+      Navigator.pushNamed(context, '/dashboard');
+    } else {
+      print('admin');
+      Navigator.pushNamed(context, '/dashboardAdmin');
     }
   }
 }
