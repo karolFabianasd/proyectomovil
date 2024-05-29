@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class AceiteScreen extends StatelessWidget {
-  const AceiteScreen({Key? key, required String userType});
+  
+   const AceiteScreen({Key? key, required this.userType});
+  final String userType;
 
   @override
   Widget build(BuildContext context) {
@@ -25,32 +27,28 @@ class AceiteScreen extends StatelessWidget {
               return Center(child: Text('No hay productos de aceite disponibles.'));
             }
 
-            return SingleChildScrollView(
-              child: GridView.count(
-                crossAxisCount: 1,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+           // Dividir la lista de productos en pares
+           return SingleChildScrollView(
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
                 children: products.map((product) {
-                    return 
-                     itemDashboard(
-                        product['nombre'],
-                        product['descripcion'],
-                        product['precio'],
-                        product['image'],
-                        product['categoria'],
-                         context,
-                      );
-                    
-                  }).toList(),
+                  return itemDashboard(
+                    product['nombre'],
+                    product['descripcion'],
+                    product['precio'],
+                    product['image'],
+                    product['categoria'],
+                    context,
+                  );
+                }).toList(),
               ),
             );
-          }
-        },
-      ),
-    );
-  }
+        }
+      },
+    ),
+  );
+}
 
   // Función para obtener los productos de aceite desde la base de datos
   Future<DataSnapshot> _getAceiteProducts() async {
@@ -74,83 +72,88 @@ class AceiteScreen extends StatelessWidget {
     return products;
   }
 
-Widget itemDashboard(String nombre, String descripcion, String precio, String imagenUrl, String categoria, BuildContext context) {
-  return Container(
-    margin: EdgeInsets.all(10), // Margen entre las tarjetas
-    width: MediaQuery.of(context).size.width * 0.45, // Ancho del contenedor principal
-    decoration: BoxDecoration(
-      color: Colors.white, // Color de fondo
-      borderRadius: BorderRadius.circular(10),
-      boxShadow: [
-        BoxShadow(
-          offset: const Offset(0, 5),
-          color: Colors.grey.withOpacity(0.2),
-          spreadRadius: 2,
-          blurRadius: 5,
-        ),
-      ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(
-          child: Container(
-            width: 200,
+ Widget itemDashboard(String nombre, String descripcion, String precio, String imagenUrl, String categoria, BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(5),
+      width: MediaQuery.of(context).size.width * 0.45, 
+      height: MediaQuery.of(context).size.height * 0.30,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 5),
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 5,
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 120,
+            width: 120,
             decoration: BoxDecoration(
+              color: Colors.white,
               image: DecorationImage(
-                image: NetworkImage(imagenUrl), // Carga la imagen desde la URL
-                fit: BoxFit.cover, // Ajusta el tamaño de la imagen para que cubra el contenedor
+                image: NetworkImage(imagenUrl),
+                fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
             ),
           ),
-        ),
-        Container(
-          padding: EdgeInsets.all(8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                nombre,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+          Container(
+            padding: EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  nombre,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              SizedBox(height: 4),
-              Text(
-                descripcion,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey,
+                SizedBox(height: 4),
+                Text(
+                  descripcion,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-              SizedBox(height: 4),
-              Text(
-                '\$$precio',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black,
+                SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '\$$precio',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.black,
+                      ),
+                    ),
+                    userType == 'admin'
+                        ? IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () {},
+                          )
+                        : ElevatedButton(
+                            onPressed: () {},
+                            child: Text('Reservar'),
+                          ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 4),
-              Text(
-                categoria,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }
 
-
-}

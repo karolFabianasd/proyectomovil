@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/home_screen.dart';
+import 'package:flutter_application_1/presentation/screens/home_screen_admin.dart';
 import 'package:flutter_application_1/presentation/screens/inventario_screen.dart';
 import 'package:flutter_application_1/presentation/screens/qr_screen.dart';
 
@@ -15,7 +16,7 @@ class _DashboardAdminScreenState extends State<DashboardAdminScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-   const HomeScreen(),
+   const HomeAdminScreen(),
    InventarioScreen(),
     const QRViewExample(),
   ];

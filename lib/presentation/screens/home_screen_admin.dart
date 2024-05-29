@@ -35,7 +35,7 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
         children: [
           itemDashboard(context, "Lavado", 'images/aceite.png', '/lavado'),
           itemDashboard(context, "Aceites", 'images/aceite.png', '/aceites'),
-          itemDashboard(context, "Mantenimiento", 'images/lavado.png', '/lavado'),
+          itemDashboard(context, "Mantenimiento", 'images/lavado.png', '/mantenimiento'),
 
         
         ],
@@ -52,13 +52,13 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
           case '/lavado':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AceiteScreen(userType: 'admin')),
+              MaterialPageRoute(builder: (context) => const LavadoScreen(userType: 'admin')),
             );
             break;
           case '/aceites':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const LavadoScreen(userType: 'admin')),
+              MaterialPageRoute(builder: (context) => const AceiteScreen(userType: 'admin')),
             );
             break;
           case '/mantenimiento':
