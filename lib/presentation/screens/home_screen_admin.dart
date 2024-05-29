@@ -3,22 +3,21 @@ import 'package:flutter_application_1/presentation/screens/aceite_screen.dart';
 import 'package:flutter_application_1/presentation/screens/lavado_screen.dart';
 import 'package:flutter_application_1/presentation/screens/mantenimiento_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeAdminScreen extends StatefulWidget {
+  const HomeAdminScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeAdminScreen> createState() => _HomeAdminScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeAdminScreenState extends State<HomeAdminScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mi Aplicación"), // Aquí defines el título del AppBar
-        backgroundColor: Colors.indigo, 
-         automaticallyImplyLeading: false,// Y el color de fondo, si lo deseas
-        
+        backgroundColor: Colors.indigo,
+         automaticallyImplyLeading: false, // Y el color de fondo, si lo deseas
       ),
       body: _buildGridView(),
     );
@@ -37,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           itemDashboard(context, "Lavado", 'images/aceite.png', '/lavado'),
           itemDashboard(context, "Aceites", 'images/aceite.png', '/aceites'),
           itemDashboard(context, "Mantenimiento", 'images/lavado.png', '/lavado'),
-          itemDashboard( context, "Promociones", 'images/lavado.png', '/lavado'),
+
         
         ],
       ),
@@ -53,19 +52,25 @@ class _HomeScreenState extends State<HomeScreen> {
           case '/lavado':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const LavadoScreen(userType: 'user')),
+              MaterialPageRoute(builder: (context) => const AceiteScreen(userType: 'admin')),
             );
             break;
           case '/aceites':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AceiteScreen(userType: 'user')),
+              MaterialPageRoute(builder: (context) => const LavadoScreen(userType: 'admin')),
             );
             break;
           case '/mantenimiento':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MantenimientoScreen(userType: 'user')),
+              MaterialPageRoute(builder: (context) => const MantenimientoScreen(userType: 'admin')),
+            );
+            break;
+          case '/tapiceria':
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AceiteScreen(userType: 'admin')),
             );
             break;
           default:

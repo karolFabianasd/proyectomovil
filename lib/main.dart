@@ -4,6 +4,7 @@ import 'package:flutter_application_1/presentation/screens/aceite_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/dashboard_screen.dart';
 import 'package:flutter_application_1/presentation/screens/home_screen.dart';
+import 'package:flutter_application_1/presentation/screens/home_screen_admin.dart';
 import 'package:flutter_application_1/presentation/screens/login_screen.dart';
 import 'package:flutter_application_1/presentation/screens/registro_screen.dart';
 
@@ -60,8 +61,8 @@ class MyApp extends StatelessWidget {
       '/registro': (context) =>  RegisterScreen(),
       '/dashboard': (context) => const DashboardScreen(),
       '/dashboardAdmin': (context) => const DashboardAdminScreen(),
-      '/aceite': (context) => const AceiteScreen(),
       '/home': (context) => const HomeScreen(),
+      '/homeAdmin': (context) => const HomeAdminScreen(),
     },
     debugShowCheckedModeBanner: false,
     );

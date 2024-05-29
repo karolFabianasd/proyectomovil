@@ -18,7 +18,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final List<Widget> _screens = [
     const HomeScreen(), // HomeScreen incluye tu GridView
     const QrScreen(),
-    const AceiteScreen(),
+    const HomeScreen(),
   ];
 
 

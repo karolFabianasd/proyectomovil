@@ -1,23 +1,20 @@
-import 'package:flutter_application_1/modelo/user.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+class DatabaseHelper {
+  static const int _version = 1;
+  static const String _dbName = "Product.db";
+  static const String _tableName = "productos";
 
-
-class DatabaseHelper{
-  static const int _version=1;
-  static const String _dbName= "User.db";
-  static const String _tableName = "usuarios";
-  
   static const String _columnId = "id";
   static const String _columnNombre = "nombre";
-  static const String _columnApellido = "apellido";
-  static const String _columnTelefono = "telefono";
-  static const String _columnCorreo = "correo";
-  static const String _columnPassword = "password";
+  static const String _columnDescripcion = "descripcion";
+  static const String _columnPrecio = "precio";
+  static const String _columnImage = "image";
+  static const String _columnCategoria = "categoria";
   static Database? _database;
 
-    static Future<Database?> _getDB() async {
+  static Future<Database?> _getDB() async {
     if (_database != null) {
       return _database;
     }
@@ -29,10 +26,10 @@ class DatabaseHelper{
           CREATE TABLE $_tableName (
             $_columnId INTEGER PRIMARY KEY AUTOINCREMENT,
             $_columnNombre TEXT,
-            $_columnApellido TEXT,
-            $_columnTelefono TEXT,
-            $_columnCorreo TEXT,
-            $_columnPassword TEXT
+            $_columnDescripcion TEXT,
+            $_columnPrecio TEXT,
+            $_columnImage TEXT,
+            $_columnCategoria TEXT
           )
         ''');
       },
@@ -42,23 +39,27 @@ class DatabaseHelper{
     return _database;
   }
 
-    static Future<void> insertRegistro(User user) async {
+  static Future<void> insertProducto(Map<String, dynamic> producto) async {
     final db = await _getDB();
     await db!.insert(
       _tableName,
-      user.toJson(),
+      producto,
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
-static Future<bool> usuarioExiste(String nombreUsuario, String contrasena) async {
-  final db = await _getDB();
-  final List<Map<String, dynamic>> maps = await db!.query(
-    _tableName,
-    where: '$_columnNombre = ? AND $_columnPassword = ?',
-    whereArgs: [nombreUsuario, contrasena],
-  );
-  return maps.isNotEmpty;
-}
+  static Future<List<Map<String, dynamic>>> getProductos() async {
+    final db = await _getDB();
+    return db!.query(_tableName);
+  }
 
+  static Future<bool> eliminarProducto(int id) async {
+    final db = await _getDB();
+    final rowsAffected = await db!.delete(
+      _tableName,
+      where: '$_columnId = ?',
+      whereArgs: [id],
+    );
+    return rowsAffected > 0;
+  }
 }

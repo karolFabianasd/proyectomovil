@@ -44,6 +44,9 @@ TextEditingController controllerUsername = TextEditingController();
                 onTap: () {
                   final username = controllerUsername.text;
                   final password = controllerPassword.text;
+                  if(username=="Admin123"){
+                     Navigator.pushNamed(context, '/dashboardAdmin');
+                  }
                   _signIn(username,password,context);
                
                 },

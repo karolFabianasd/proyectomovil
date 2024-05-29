@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/admin_screen.dart';
 import 'package:flutter_application_1/presentation/screens/home_screen.dart';
+import 'package:flutter_application_1/presentation/screens/inventario_screen.dart';
 import 'package:flutter_application_1/presentation/screens/qr_screen.dart';
 
 class DashboardAdminScreen extends StatefulWidget {
@@ -14,8 +15,8 @@ class _DashboardAdminScreenState extends State<DashboardAdminScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    const HomeScreen(), // HomeScreen incluye tu GridView
-    const QrScreen(),
+   const HomeScreen(),
+   InventarioScreen(),
     const QRViewExample(),
   ];
 
@@ -38,11 +39,11 @@ class _DashboardAdminScreenState extends State<DashboardAdminScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code),
-            label: 'MyQr',
+            icon: Icon(Icons.inventory),
+            label: 'Agregar',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.date_range), label: "LectoQR"),
+              icon: Icon(Icons.qr_code), label: "LectoQR"),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.indigo[800],

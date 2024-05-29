@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class LavadoScreen extends StatelessWidget {
-  const LavadoScreen({Key? key, required String userType});
+class MantenimientoScreen extends StatelessWidget {
+  const MantenimientoScreen({Key? key, required String userType});
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +10,7 @@ class LavadoScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Productos de Aceite"),
         backgroundColor: Colors.indigo,
+         automaticallyImplyLeading: false,
       ),
       body: FutureBuilder<DataSnapshot>(
         future: _getAceiteProducts(), // Llama a la función que obtiene los productos de aceite
@@ -66,7 +67,7 @@ class LavadoScreen extends StatelessWidget {
     if (dataSnapshot != null && dataSnapshot.value != null) {
       Map<dynamic, dynamic> values = dataSnapshot.value as Map<dynamic, dynamic>;
       values.forEach((key, value) {
-        if (value['categoria'] == 'Lavados') {
+        if (value['categoria'] == 'Mantenimiento') {
           products.add(value);
         }
       });

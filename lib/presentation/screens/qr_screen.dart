@@ -15,6 +15,7 @@ class QrScreen extends StatelessWidget {
            automaticallyImplyLeading: false,
           title: const Text('Mi QR',style:TextStyle(color: Colors.white)),
           backgroundColor: Colors.indigo,
+          
         ),
         body: Center(
           child: Column(
