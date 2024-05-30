@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/aceite_screen.dart';
+import 'package:flutter_application_1/presentation/screens/historial_reservas_screen.dart';
 import 'package:flutter_application_1/presentation/screens/home_screen.dart';
 import 'package:flutter_application_1/presentation/screens/qr_screen.dart';
 
@@ -18,7 +19,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final List<Widget> _screens = [
     const HomeScreen(), // HomeScreen incluye tu GridView
     const QrScreen(),
-    const HomeScreen(),
+     HistorialReservasScreen(),
   ];
 
 

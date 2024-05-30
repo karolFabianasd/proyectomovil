@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_application_1/presentation/screens/reserva_screen.dart';
 
 class LavadoScreen extends StatefulWidget {
   
@@ -178,7 +179,20 @@ class _LavadoScreenState extends State<LavadoScreen> {
                             },
                           )
                         : ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                                  Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ReservaScreen(
+                            nombre: nombre,
+                            descripcion: descripcion,
+                            precio: precio,
+                            imagenUrl: imagenUrl,
+                            categoria: categoria,
+                          ),
+                        ),
+                      );
+                            },
                             child: Text('Reservar'),
                           ),
                   ],
