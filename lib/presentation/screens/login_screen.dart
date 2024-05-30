@@ -124,7 +124,6 @@ TextEditingController controllerUsername = TextEditingController();
    void _signIn(correo, pass , context) async {
    
  
-
     User? user = await _auth.signInWithEmail(correo, pass);
     
     if (user!=null){

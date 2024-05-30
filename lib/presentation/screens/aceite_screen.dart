@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class AceiteScreen extends StatelessWidget {
+class AceiteScreen extends StatefulWidget {
   
    const AceiteScreen({Key? key, required this.userType});
   final String userType;
+
+  @override
+  State<AceiteScreen> createState() => _AceiteScreenState();
+}
+
+class _AceiteScreenState extends State<AceiteScreen> {
+  late Future<DataSnapshot> _futureProducts;
+@override
+void initState() {
+  super.initState();
+      _futureProducts = _getAceiteProducts();
+  
+}
 
   @override
   Widget build(BuildContext context) {
@@ -29,21 +42,25 @@ class AceiteScreen extends StatelessWidget {
 
            // Dividir la lista de productos en pares
            return SingleChildScrollView(
-              child: Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: products.map((product) {
-                  return itemDashboard(
-                    product['nombre'],
-                    product['descripcion'],
-                    product['precio'],
-                    product['image'],
-                    product['categoria'],
-                    context,
-                  );
-                }).toList(),
-              ),
-            );
+             
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 15,
+                   runSpacing: 10,
+                  children: products.map((product) {
+                    return itemDashboard(
+                      product['nombre'],
+                      product['descripcion'],
+                      product['precio'],
+                      product['image'],
+                      product['categoria'],
+                      product['key'],
+                      context,
+                    );
+                  }).toList(),
+                ),
+              );
+            
         }
       },
     ),
@@ -65,6 +82,7 @@ class AceiteScreen extends StatelessWidget {
       Map<dynamic, dynamic> values = dataSnapshot.value as Map<dynamic, dynamic>;
       values.forEach((key, value) {
         if (value['categoria'] == 'Aceites') {
+          value['key'] = key; // Añadir la clave del producto al valor
           products.add(value);
         }
       });
@@ -72,8 +90,18 @@ class AceiteScreen extends StatelessWidget {
     return products;
   }
 
- Widget itemDashboard(String nombre, String descripcion, String precio, String imagenUrl, String categoria, BuildContext context) {
+   // Función para eliminar un producto de la base de datos
+  Future<void> _deleteProduct(String key) async {
+    final DatabaseReference databaseReference = FirebaseDatabase.instance.reference().child('inventarios').child(key);
+    await databaseReference.remove();
+    setState(() {
+      _futureProducts = _getAceiteProducts();
+    });
+  }
+
+ Widget itemDashboard(String nombre, String descripcion, String precio, String imagenUrl, String categoria,String key, BuildContext context) {
     return Container(
+      
       margin: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width * 0.45, 
       height: MediaQuery.of(context).size.height * 0.30,
@@ -137,10 +165,16 @@ class AceiteScreen extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    userType == 'admin'
+                    widget.userType == 'admin'
                         ? IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () {},
+                            icon: const Icon(Icons.delete),
+                            onPressed: () async {
+                                await _deleteProduct(key);
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                content: Text('Producto eliminado'),
+                              ));
+                                (context as Element).reassemble();
+                            },
                           )
                         : ElevatedButton(
                             onPressed: () {},
